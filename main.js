@@ -13,11 +13,8 @@ const createWindow = () => {
         },
     });
 
-    // ipcMain.on('fetch-data', async (event, args) => {
-    //     try {
     const response = axios.get('https://catfact.ninja/fact');
     response.then((res) => {
-        console.log(res.data);
         win.loadFile('app/templates/index.html');
     });
     win.webContents.openDevTools();

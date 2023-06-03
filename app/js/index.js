@@ -10,77 +10,76 @@ document.addEventListener('DOMContentLoaded', () => {
         jQuery('.quiz').addClass('animated fadeInDown').removeClass('hidden');
         axios
             .get(
-                'https://quizapi.io/api/v1/questions?apiKey=<api_key>'
+                'https://quizapi.io/api/v1/questions?apiKey=u8TylbMvsAhol0ktB6xeDv26OIY79ReS0n8pP65N&limit=2'
             )
             .then(function (response) {
-                const questionsArr = response.data;
-                console.log(questionsArr);
+                // const questionsArr = response.data;
 
-                // const questionsArr = [
-                //     {
-                //         id: 1,
-                //         question: 'How to delete a directory in Linux?',
-                //         description:
-                //             'The rmdir commands deletes only empty directories. To delete a folder recursively use the rm -rf command.',
-                //         answers: {
-                //             answer_a: 'ls',
-                //             answer_b: 'delete',
-                //             answer_c: 'remove',
-                //             answer_d: 'rmdir',
-                //             answer_e: null,
-                //             answer_f: null,
-                //         },
-                //         multiple_correct_answers: 'false',
-                //         correct_answers: {
-                //             answer_a_correct: 'false',
-                //             answer_b_correct: 'false',
-                //             answer_c_correct: 'false',
-                //             answer_d_correct: 'true',
-                //             answer_e_correct: 'false',
-                //             answer_f_correct: 'false',
-                //         },
-                //         correct_answer: 'answer_d',
-                //         explanation: 'rmdir deletes an empty directory',
-                //         tip: null,
-                //         tags: [],
-                //         category: 'Linux',
-                //         difficulty: 'Easy',
-                //     },
-                //     {
-                //         id: 957,
-                //         question: 'At its core, Kubernetes is a platform for:',
-                //         description: null,
-                //         answers: {
-                //             answer_a:
-                //                 'Provisioning machines (similar to Puppet, Ansible)',
-                //             answer_b:
-                //                 'Running and scheduling container applications on a cluster',
-                //             answer_c: 'Packaging software in containers',
-                //             answer_d: null,
-                //             answer_e: null,
-                //             answer_f: null,
-                //         },
-                //         multiple_correct_answers: 'false',
-                //         correct_answers: {
-                //             answer_a_correct: 'false',
-                //             answer_b_correct: 'true',
-                //             answer_c_correct: 'false',
-                //             answer_d_correct: 'false',
-                //             answer_e_correct: 'false',
-                //             answer_f_correct: 'false',
-                //         },
-                //         correct_answer: null,
-                //         explanation: null,
-                //         tip: null,
-                //         tags: [
-                //             {
-                //                 name: 'Kubernetes',
-                //             },
-                //         ],
-                //         category: 'DevOps',
-                //         difficulty: 'Easy',
-                //     },
-                // ];
+                const questionsArr = [
+                    {
+                        id: 1,
+                        question: 'How to delete a directory in Linux?',
+                        description:
+                            'The rmdir commands deletes only empty directories. To delete a folder recursively use the rm -rf command.',
+                        answers: {
+                            answer_a: 'ls',
+                            answer_b: 'delete',
+                            answer_c: 'remove',
+                            answer_d: 'rmdir',
+                            answer_e: null,
+                            answer_f: null,
+                        },
+                        multiple_correct_answers: 'false',
+                        correct_answers: {
+                            answer_a_correct: 'false',
+                            answer_b_correct: 'false',
+                            answer_c_correct: 'false',
+                            answer_d_correct: 'true',
+                            answer_e_correct: 'false',
+                            answer_f_correct: 'false',
+                        },
+                        correct_answer: 'answer_d',
+                        explanation: 'rmdir deletes an empty directory',
+                        tip: null,
+                        tags: [],
+                        category: 'Linux',
+                        difficulty: 'Easy',
+                    },
+                    {
+                        id: 957,
+                        question: 'At its core, Kubernetes is a platform for:',
+                        description: null,
+                        answers: {
+                            answer_a:
+                                'Provisioning machines (similar to Puppet, Ansible)',
+                            answer_b:
+                                'Running and scheduling container applications on a cluster',
+                            answer_c: 'Packaging software in containers',
+                            answer_d: null,
+                            answer_e: null,
+                            answer_f: null,
+                        },
+                        multiple_correct_answers: 'false',
+                        correct_answers: {
+                            answer_a_correct: 'false',
+                            answer_b_correct: 'true',
+                            answer_c_correct: 'false',
+                            answer_d_correct: 'false',
+                            answer_e_correct: 'false',
+                            answer_f_correct: 'false',
+                        },
+                        correct_answer: null,
+                        explanation: null,
+                        tip: null,
+                        tags: [
+                            {
+                                name: 'Kubernetes',
+                            },
+                        ],
+                        category: 'DevOps',
+                        difficulty: 'Easy',
+                    },
+                ];
 
                 jQuery('form')
                     .addClass('animated fadeInDown')
