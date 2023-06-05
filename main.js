@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const isDev = process.env.NODE_ENV === 'development';
 const isMac = process.platform === 'darwin';
-const apiKey = '<YOUR_API_KEY>';
+const apiKey = 'u8TylbMvsAhol0ktB6xeDv26OIY79ReS0n8pP65N';
 const questionsCount = 5;
 
 const createWindow = () => {
@@ -27,14 +27,14 @@ const createWindow = () => {
       const response = await axios.get(
         `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&limit=${questionsCount}`,
       );
-      let questionsArr = response.data;
+      const questionsArr = response.data;
 
       // debug
-      //   const data = fs.readFileSync('./tests/data.json', {
-      //     encoding: 'utf8',
-      //     flag: 'r',
-      //   });
-      //   questionsArr = JSON.parse(data);
+      // const data = fs.readFileSync('./tests/data.json', {
+      //   encoding: 'utf8',
+      //   flag: 'r',
+      // });
+      // const questionsArr = JSON.parse(data);
 
       event.reply('fetch-data-response', questionsArr);
     } catch (error) {
