@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const isDev = process.env.NODE_ENV === 'development';
 const isMac = process.platform === 'darwin';
-const apiKey = 'u8TylbMvsAhol0ktB6xeDv26OIY79ReS0n8pP65N';
+const apiKey = '<YOUR_API_KEY>';
 const questionsCount = 5;
 
 const createWindow = () => {
