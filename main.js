@@ -48,6 +48,8 @@ const createWindow = (width, height) => {
   if (isDev) {
     mainWindow.webContents.openDevTools();
   }
+
+  ipcMain.on('reload', () => mainWindow.webContents.reload());
 };
 
 app.whenReady().then(() => {

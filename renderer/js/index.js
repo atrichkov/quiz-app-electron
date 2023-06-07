@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .prepend(buildQuestionTemplate(0));
 
       let correctAnswersCount = 0;
-      function checkSelectedAnswer() {
+      (function checkSelectedAnswer() {
         jQuery('.btnQ').on('click', function (e) {
           const selectedAnswer = jQuery(this).attr('for');
           let index = jQuery(this).parent().parent().data('index');
@@ -46,12 +46,19 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             jQuery('.q' + index).addClass('animated fadeOutUp');
             jQuery('.quiz').append(
-              `<div class="end animated bounceInDown">Results: (${correctAnswersCount} / ${questionsArr.length})</div>`,
+              `<div class="end animated bounceInDown">Results: (${correctAnswersCount} / ${questionsArr.length})</div>
+                <div class="buttons">
+                  <button class="btn-green" id="reloadBtn">
+                    <img class="icon" src="../../resources/reload-6x-white.png" /> Try again
+                  </button>
+                </div>
+              `,
             );
+
+            jQuery('#reloadBtn').on('click', () => ipcRenderer.send('reload'));
           }
         });
-      }
-      checkSelectedAnswer();
+      })();
 
       function buildQuestionTemplate(index) {
         const question = questionsArr[index];
