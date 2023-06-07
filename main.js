@@ -1,4 +1,4 @@
-const { app, BrowserWindow, protocol, ipcMain } = require('electron');
+const { app, BrowserWindow, protocol, ipcMain, screen } = require('electron');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -9,11 +9,11 @@ const isMac = process.platform === 'darwin';
 const apiKey = '<YOUR_API_KEY>';
 const questionsCount = 5;
 
-const createWindow = () => {
+const createWindow = (width, height) => {
   const mainWindow = new BrowserWindow({
     autoHideMenuBar: true,
-    width: 1420,
-    height: 960,
+    width: Number(((75 / 100) * width).toFixed()),
+    height: Number(((75 / 100) * height).toFixed()),
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -24,17 +24,20 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, './renderer/pages/index.html'));
   ipcMain.on('fetch-data', async (event, args) => {
     try {
-      const response = await axios.get(
-        `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&limit=${questionsCount}`,
-      );
-      const questionsArr = response.data;
-
-      // debug
-      // const data = fs.readFileSync('./tests/data.json', {
-      //   encoding: 'utf8',
-      //   flag: 'r',
-      // });
-      // const questionsArr = JSON.parse(data);
+      let questionsArr;
+      if (isDev) {
+        // use dummy data to save api calls
+        const data = fs.readFileSync('./tests/data.json', {
+          encoding: 'utf8',
+          flag: 'r',
+        });
+        questionsArr = JSON.parse(data);
+      } else {
+        const response = await axios.get(
+          `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&limit=${questionsCount}`,
+        );
+        questionsArr = response.data;
+      }
 
       event.reply('fetch-data-response', questionsArr);
     } catch (error) {
@@ -48,7 +51,9 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
-  createWindow();
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const { width, height } = primaryDisplay.workAreaSize;
+  createWindow(width, height);
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
