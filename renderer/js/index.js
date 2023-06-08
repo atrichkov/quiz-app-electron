@@ -37,25 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
           circle.animate(nextQuestionIndex / questionsArr.length);
 
-          // If there is next question show it
+          // Show next question if any
           if (questionsArr[nextQuestionIndex]) {
             jQuery('form')
               .addClass('animated fadeInDown')
               .prepend(buildQuestionTemplate(nextQuestionIndex));
             checkSelectedAnswer();
           } else {
-            jQuery('.q' + index).addClass('animated fadeOutUp');
-            jQuery('.quiz').append(
-              `<div class="end animated bounceInDown">Results: (${correctAnswersCount} / ${questionsArr.length})</div>
-                <div class="buttons">
-                  <button class="btn-green" id="reloadBtn">
-                    <img class="icon" src="../../resources/reload-6x-white.png" /> Try again
-                  </button>
-                </div>
-              `,
-            );
-
-            jQuery('#reloadBtn').on('click', () => ipcRenderer.send('reload'));
+            showResult(index, correctAnswersCount);
           }
         });
       })();
@@ -79,6 +68,35 @@ document.addEventListener('DOMContentLoaded', () => {
   
                       </div>
                   </fieldset>`;
+      }
+
+      function showResult(index, correctAnswersCount) {
+        jQuery('.q' + index).addClass('animated fadeOutUp');
+
+        let message;
+        if (correctAnswersCount === questionsArr.length) {
+          message =
+            'Congratulations on completing the code quiz game with an impressive score! Your knowledge and dedication have shone through, making you a true quiz master.';
+        } else if (correctAnswersCount === 0) {
+          message =
+            "Keep up the effort! While you may not have scored any correct answers in the code quiz game, your participation is valuable and provides an opportunity for personal growth. Don't be discouraged, and continue to embrace challenges as a chance to learn and improve.";
+        } else {
+          message =
+            'Fantastic work on the code quiz game! Your partially correct answers showcase your knowledge and dedication in tackling the challenging questions. Keep up the excellent work and continue expanding your understanding in various coding subjects.';
+        }
+
+        jQuery('.quiz').append(
+          `<div class="end animated bounceInDown">${message} <br />
+              Your score: (${correctAnswersCount} / ${questionsArr.length})</div>
+            <div class="buttons">
+              <button class="btn-green" id="reloadBtn">
+                <img class="icon" src="../../resources/reload-6x-white.png" /> Try again
+              </button>
+            </div>
+          `,
+        );
+
+        jQuery('#reloadBtn').on('click', () => ipcRenderer.send('reload'));
       }
     });
 
