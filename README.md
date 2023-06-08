@@ -1,9 +1,11 @@
 # quiz-app
 
-## Requirements
+## Prerequisites to run the app
 
-- minimum requirement NodeJS >= 16.0
-- minimum requirement NPM >= 8.0
+1. Minimum requirement [NodeJS](<(https://nodejs.org/)>) >= 16.0
+2. Minimum requirement NPM >= 8.0
+3. Get ApiKey from [https://quizapi.io/](https://quizapi.io/) and use it in main.js file
+4. Create a file named .env in the root of the project dir with content from .env.example and set proper values
 
 ## Getting Started
 
@@ -13,8 +15,15 @@ npm install
 
 ## Usage
 
-- Requires an [Node.js](https://nodejs.org/)
-- run in debug mode
+#### Run the app
+
+```shell
+npm start
+```
+
+#### Run in debug mode
+
+- with [nodemon](https://www.npmjs.com/package/nodemon) and dummy data
 
 ```shell
 npm run watch

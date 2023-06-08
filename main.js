@@ -1,4 +1,4 @@
-const { app, BrowserWindow, protocol, ipcMain, screen } = require('electron');
+const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const isDev = process.env.NODE_ENV === 'development';
 const isMac = process.platform === 'darwin';
-const apiKey = '<YOUR_API_KEY>';
+const apiKey = process.env.API_KEY || '<YOUR_API_KEY>';
 const questionsCount = 5;
 
 const createWindow = (width, height) => {
