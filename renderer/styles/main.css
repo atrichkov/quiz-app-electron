@@ -11,6 +11,10 @@
 	height: 100%;
   }
 
+  html, body {
+	background-image: url('../../resources/background-main.avif');
+  }
+
   header {
 	text-align: center;
   }
@@ -138,6 +142,7 @@
 	padding: 20px;
 	background-color: #fff;
 	margin-bottom: 10px;
+	cursor: pointer;
 }
 .q input[type="radio"] + label span:hover {
 	background-color: #dceefa;
