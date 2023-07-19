@@ -4,7 +4,7 @@ const { ipcRenderer } = require('electron');
 const jQuery = require('jquery');
 
 document.addEventListener('DOMContentLoaded', () => {
-    jQuery('#startBtn').on('click', function (e) {
+    jQuery('#startBtn').on('click', function () {
         ipcRenderer.on('fetch-data-response', (event, questionsArr) => {
             // JSON.parse(Buffer.from(data).toString('utf8'));
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let correctAnswersCount = 0;
             (function checkSelectedAnswer() {
-                jQuery('.btnQ').on('click', function (e) {
+                jQuery('.btnQ').on('click', function () {
                     const btnQLabel = jQuery(this);
                     const selectedAnswer = btnQLabel.attr('for');
                     let index = btnQLabel.parent().parent().data('index');
@@ -80,12 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 jQuery('.quiz').append(
                     `<div class="end animated bounceInDown">${message} <br />
-              Your score: (${correctAnswersCount} / ${questionsArr.length})</div>
-            <div class="buttons">
-              <button class="btn-green" id="reloadBtn">
-                <img class="icon" src="../../resources/reload-6x-white.png" /> Try again
-              </button>
-            </div>
+                    Your score: (${correctAnswersCount} / ${questionsArr.length})</div>
+                    <div class="buttons">
+                    <button class="btn-green" id="reloadBtn">
+                        <img class="icon" src="../../resources/reload-6x-white.png" /> Try again
+                    </button>
+                    </div>
           `
                 );
 
