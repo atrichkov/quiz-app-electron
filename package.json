@@ -22,7 +22,7 @@
       "category": "quiz.app"
     }
   },
-  "keywords": [],
+  "keywords": ["quiz", "app", "electron", "jquery"],
   "author": "Asen Trichkov",
   "license": "ISC",
   "devDependencies": {

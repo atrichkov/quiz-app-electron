@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     `<div class="end animated bounceInDown">${message} <br />
                     Your score: (${correctAnswersCount} / ${questionsArr.length})</div>
                     <div class="buttons">
-                    <button class="btn-green" id="reloadBtn">
-                        <img class="icon" src="../../resources/reload-6x-white.png" /> Try again
-                    </button>
+                        <button class="btn-green" id="reloadBtn">
+                            <img class="icon" src="../../resources/reload-6x-white.png" /> Try again
+                        </button>
                     </div>
           `
                 );
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         to: {
             color: '#047E3C',
         },
-        step: function (state, circle) {
+        step: (state, circle) => {
             circle.path.setAttribute('stroke', state.color);
         },
     });

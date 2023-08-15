@@ -28,7 +28,7 @@ const createWindow = (width, height) => {
             let questionsArr;
             if (isDev) {
                 // use dummy data to save api calls
-                const data = fs.readFileSync('./tests/data.json', {
+                const data = fs.readFileSync(path.join(__dirname, './tests/data.json'), {
                     encoding: 'utf8',
                     flag: 'r',
                 });
